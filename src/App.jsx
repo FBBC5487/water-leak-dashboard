@@ -174,7 +174,7 @@ function Dashboard() {
         <div className="bg-white p-4 rounded-lg shadow-sm h-[500px] z-0">
           <h2 className="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Water Distribution Network</h2>
           
-          <MapContainer center={[3.1400, 101.6869]} zoom={15} style={{ height: '420px', width: '100%', borderRadius: '8px' }}>
+          <MapContainer center={[2.945828, 101.875196]} zoom={15} style={{ height: '420px', width: '100%', borderRadius: '8px' }}>
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; OpenStreetMap'
@@ -187,10 +187,10 @@ function Dashboard() {
                 key={sensor.id}
                 ref={(el) => (markerRefs.current[sensor.id] = el)}
                 center={[sensor.lat, sensor.lng]} 
-                radius={12}
+                radius={10}
                 pathOptions={{ 
-                    color: sensor.status === 'offline' ? 'gray' : (sensor.battery < 20 ? 'orange' : 'blue'),
-                    fillColor: sensor.status === 'offline' ? 'gray' : 'blue',
+                    color: sensor.status === 'offline' ? 'gray' : (sensor.battery < 25 ? 'orange' : 'blue'),
+                    fillColor: sensor.status === 'offline' ? 'gray' : (sensor.battery < 25 ? 'orange' : 'blue'),
                     fillOpacity: 0.6
                 }}
               >
@@ -207,7 +207,7 @@ function Dashboard() {
         {/* TABLE SECTION */}
         <div className="bg-white p-4 rounded-lg shadow-sm h-[500px] flex flex-col">
           <h2 className="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Live Sensor Status</h2>
-          <p className="text-xs text-gray-400 mb-2">Showing latest detection result per sensor</p>
+          <p className="text-xs text-gray-400 mb-2">Showing latest detection result</p>
           
           <div className="overflow-auto flex-1">
             <table className="w-full text-left border-collapse">
@@ -218,7 +218,7 @@ function Dashboard() {
                   <th className="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Result</th>
                   <th className="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Conf.</th>
                   <th className="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Size</th>
-                  <th className="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Loc.</th>
+                  <th className="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Location</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
